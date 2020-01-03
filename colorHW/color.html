@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <title>Color</title>
+  <style>
+  html,body{
+    height: 100%;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container h-75 my-5 justufy-content-center">
+    <div class="h-100"id="box" style="background-color:rgb(0, 205, 255);"></div>
+  </div>
+  <div>
+    <input type="button" value="+" onmousedown="down('add')" onmouseup="up('stop')">
+    
+    <input type="button" value="-" onmousedown="down('minus')" onmouseup="up('stop')">
+    
+    <input type="button" value="?" onmousedown="down('rand')" onmouseup="up('stop')">  
+    
+    <p id="word"></p>
+
+
+  </div>
+
+  <script>
+    var r=0;
+    var g=205;
+    var b=255;
+
+    function change(){
+      document.getElementById("box").style.backgroundColor=`rgb(${r},${g},${b})`;
+    }
+    function up() {
+            clearInterval(stop);
+        }
+    function down(select){
+      stop = setInterval(function () {
+                switch (select) {
+                    case 'add':
+                        if (r < 255) r++;
+                        if (g < 255) g++;
+                        if (b < 255) b++;
+                        change();
+                        break;
+                    case 'minus':
+                        if (r > 0) r--;
+                        if (g > 0) g--;
+                        if (b > 0) b--;
+                        change();
+                        break;
+                    case 'rand':
+                        var red = (Math.floor(Math.random(0, 255) * 256));
+                        var green = (Math.floor(Math.random(0, 255) * 256));
+                        var blue = (Math.floor(Math.random(0, 255) * 256));
+                        r = red;
+                        g = green;
+                        b = blue;
+                        change();
+                        break;
+                }
+            }, 40
+            )        
+
+            console.log(r, g, b);
+
+        }
+
+
+
+     
+  </script>
+
+  <script src="jquery-3.4.1.min.js"></script>
+  <script src="popper.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+</body>
+
+</html>
